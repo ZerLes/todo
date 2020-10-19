@@ -1,0 +1,48 @@
+<div class="container">
+	<div class="card-deck  my-1 mb-2 text-center">
+		<div class="card mb-4">
+
+			{% if note.isDone %}
+			<div class="card-header bg-success">
+			{% else%}
+			{% if note.isDateExpired %}
+			<div class="card-header bg-danger">
+			{% else %}
+			<div class="card-header bg-secondary">
+			{% endif %}
+			{% endif %}
+				<div class="row">
+					<div class="col-">
+						<form method="post"><button class="btn btn-outline-dark float-right mb-3" name="done" value="{{note.id}}"'><img src="{{ url_for('static', filename='/check.svg') }}" alt="выполнено"></img></button ></form>
+					</div>
+					<div class="col" data-toggle="collapse" role="button" href="#noteText{{note.id}}" role="button" aria-expanded="false" aria-controls="noteText{{note.id}}"">
+						<h5 class="text-light"> {{note.title}} <h5>
+					</div>
+					<div class="col-">
+						<form method="post"><button class="btn btn-outline-dark float-right mb-3" name="delete" value="{{note.id}}"'><img src="{{ url_for('static', filename='/trash.svg') }}" alt="удалить"></img></button ></form>
+					</div>
+				</div>
+			</div>
+			<div class="collapse" id="noteText{{note.id}}">
+				<div class="card-body text-center">
+					{{note.text}}
+				</div>
+			<div class="card-footer text-muted">
+				<div class="row">
+					<div class="col">
+						<text class="text-center">Создано: {{note.creationDate}}</text>
+					</div>
+					<div class="col">
+						<ul class="list-inline">
+								<li class="list-inline-item">Сделать до: </li>
+								<li class="list-inline-item"><form method="post"><input type="date" class="form-control width=1" id="dobefore" name="dobefore" value='{{note.dueDate}}'/></form></li>
+						</ul>
+					</div>
+					
+				</div>
+				
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

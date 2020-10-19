@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Задачи</title>{% endblock %}
+
+{% block content %}
+	{% if not current_user.is_authenticated %}
+		{% include 'not_auth.html' %}
+	{% endif %}
+	
+	{% if current_user.is_authenticated %}
+		<div class="container">
+		<div class="row">
+				<div class="col text-center">
+					<a class="btn btn-outline-success m-4 text-center" href="/addnew">Создать задачу</a>
+				</div>
+			</div>
+		</div>
+
+		{% for note in notes_list %}
+			{% with note=note %}
+				{% include 'note.html' %}
+			{% endwith %}
+		{% endfor %}
+	{% endif %}
+{% endblock %}

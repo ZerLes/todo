@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Новая задача</title>{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center my-5 text-center">
+	<h2> Новая задача </h2>
+</div>
+{% if error %}
+<div class="alert alert-danger" role="alert">
+{{error}}
+</div>
+{% endif %}
+	<form action="" method="post" novalidate>
+		<div class="form-group row justify-content-center">
+			<label for="inputTitle" class="col-form-label">Заголовок</label>
+			<div class="col-sm-3">
+				<input class="form-control" id="inputTitle" name="title"/>
+			</div>
+		</div>
+		<div class="form-group row justify-content-center">
+			<label for="inputText">Текст</label>
+			<div class="col-sm-3">
+				<textarea class="form-control" id="inputText" name="text" rows="4" value='{{text}}'></textarea>
+			</div>
+		</div>
+		<div class="form-group row justify-content-center">
+			<ul class="list-inline">
+				<li class="list-inline-item">Сделать до: </li>
+				<li class="list-inline-item"><input type="date" class="form-control width=1" name="dueDate" value='{{dueDate}}'/></li>
+			</ul>
+		</div>
+		<div class="form-group row justify-content-center">
+			<button type="submit" class="btn btn-outline-success">Создать задачу</button>
+		</div>
+	</form>
+</body>
+{% endblock %}
