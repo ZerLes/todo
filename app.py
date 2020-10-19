@@ -13,6 +13,7 @@ app.config['SECRET_KEY'] = '[secret]'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://[user]:[password]@[host]/todolistdb'
 app.config['MYSQL_DATABASE_CHARSET'] = 'utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 180
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
@@ -120,7 +121,7 @@ def register():
 			user = User(login=login, password=password1, username=username)
 			db.session.add(user)
 			db.session.commit()
-			return redirect('/')
+			return render_template('register_success.html')
 		except:
 			return render_template('error.html')
 	else:
